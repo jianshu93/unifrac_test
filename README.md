@@ -1,4 +1,6 @@
 
+C.F lucblassel/phylotree#11 and lucblassel/phylotree#8
+
 # UniFrac implememtation in rust
 
 This is an example repo to show how to compute the [UniFrac]() distance between a pair of samples containing taxa. 
