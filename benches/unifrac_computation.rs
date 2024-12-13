@@ -1,4 +1,6 @@
-use criterion::{criterion_group, criterion_main, BenchmarkId, Criterion};
+use criterion::{
+    criterion_group, criterion_main, AxisScale, BenchmarkId, Criterion, PlotConfiguration,
+};
 use ndarray::Array1;
 use ndarray_rand::{
     rand_distr::{Exp1, Uniform},
@@ -10,7 +12,19 @@ use unifrac::compute::{
 
 pub fn bench_rayon_vs_ndarray(c: &mut Criterion) {
     let mut group = c.benchmark_group("UniFrac Function");
-    for n_branches in [10, 100, 1_000, 10_000, 100_000] {
+    let plot_config = PlotConfiguration::default().summary_scale(AxisScale::Logarithmic);
+    group.plot_config(plot_config);
+
+    for n_branches in [
+        10,
+        100,
+        1_000,
+        10_000,
+        100_000,
+        1_000_000,
+        10_000_000,
+        100_000_000,
+    ] {
         let p_a = Array1::<f64>::random(n_branches, Uniform::new(0., 1.)).round();
         let p_b = Array1::<f64>::random(n_branches, Uniform::new(0., 1.)).round();
         let brlens = Array1::<f64>::random(n_branches, Exp1);
