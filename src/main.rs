@@ -49,7 +49,10 @@ fn main() -> Result<()> {
 
     // Read the sample-feature table
     let (taxa_order, sample_names, presence_matrix) = read_sample_table(table_file)?;
-
+    assert!(
+        presence_matrix.iter().map(|row| row.len()).all_equal(),
+        "rows of the presence matrix are not all the same size..."
+    );
     let n_samples = sample_names.len();
 
     // Compute distance matrix: n_samples x n_samples

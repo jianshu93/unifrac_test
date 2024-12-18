@@ -30,6 +30,7 @@ pub fn compute_unifrac_for_pair(
             let name = sub_tree.get(&l).unwrap().name.clone().unwrap();
             if !set.contains(&name) {
                 sub_tree.prune(&l).context("Prune failed")?;
+                sub_tree.compress()?; // We also need to compress before pruning other leaves
             }
         }
     }
