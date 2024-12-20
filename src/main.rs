@@ -2,6 +2,7 @@ use anyhow::Result;
 use clap::{Arg, Command};
 use phylotree::tree::Tree;
 use std::path::Path;
+use itertools::Itertools;
 use unifrac::{
     compute::compute_unifrac_for_pair,
     io::{read_sample_table, write_matrix},
