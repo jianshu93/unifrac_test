@@ -19,7 +19,7 @@ pub fn read_sample_table(filename: &str) -> Result<(Vec<String>, Vec<String>, Ve
 
     // First line: parse sample names
     let header = lines.next().context("No header in table")??;
-    let mut hdr_split = header.split_whitespace();
+    let mut hdr_split = header.split('\t');
     hdr_split.next(); // ignore the first element in the header line
     let sample_names: Vec<String> = hdr_split.map(|s| s.to_string()).collect();
 
@@ -28,7 +28,7 @@ pub fn read_sample_table(filename: &str) -> Result<(Vec<String>, Vec<String>, Ve
 
     for line in lines {
         let line = line?;
-        let mut parts = line.split_whitespace();
+        let mut parts = line.split('\t');
         let taxon = parts.next().context("Taxon missing in a line")?.to_string();
         taxa_order.push(taxon);
         let values: Vec<f64> = parts
