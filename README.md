@@ -1,7 +1,9 @@
 # UniFrac implememtation in Rust
 
 This is an example repo to show how to compute the [UniFrac](https://en.wikipedia.org/wiki/UniFrac) distance between a pair of samples containing taxa. 
-It uses the [phylotree](https://github.com/lucblassel/phylotree-rs) crate to parse the tree file and feature-sample table (OTU table for example) and then compute the unifrac distance.
+It uses the [phylotree](https://github.com/lucblassel/phylotree-rs) crate to parse the tree file and feature-sample table (OTU table for example) and then compute the unweighted unifrac distance. This is the example implementation, not heavily optimized. 
+
+This is the orignal unweighted UniFrac, which is normalized by tree size for each pair of samples. That is the tree is trimmed first to include features in either of the sample or both but remove features that are not there for any of the samples. This unweighted is not a metric distance since the total space for each pair of samples is different. 
 
 ## Install
 ```bash
